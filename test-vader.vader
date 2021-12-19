@@ -1,0 +1,59 @@
+#
+# Vader
+# https://github.com/junegunn/vader.vim
+#
+
+"
+" Basic blocks
+"
+Given (input text will be pasted into "workbench buffer"):
+  this will be pasted into "workbench buffer" for Do/Execute blocks
+
+Do (nomal mode keystrokes):
+  yyp
+
+Expect (can come after Do or Execute):
+  this will be pasted into "workbench buffer" for Do/Execute blocks
+  this will be pasted into "workbench buffer" for Do/Execute blocks
+
+"
+" Do is ignored due to Expcute
+"
+Given (input text will be pasted into "workbench buffer"):
+  this will be pasted into "workbench buffer" for Do/Execute blocks
+
+Do (nomal mode keystrokes):
+  yyp
+
+Execute (plain vimscript to be executed):
+  setf python
+  AssertEqual 'python', &filetype
+
+Expect (can come after Do or Execute):
+  this will be pasted into "workbench buffer" for Do/Execute blocks
+
+"
+" Syntax highlight and python
+" https://github.com/junegunn/vader.vim/blob/master/test/feature/lang-if.vader
+"
+Given python (python code):
+  def a = 1
+
+Execute python (copy):
+  import os
+  import vim
+  from vim import current, vars
+  # The path of the current .vader file: vars['vader_file']
+  current.buffer.append(os.path.basename(vars['vader_file']))
+
+Expect (code and filename):
+  def a = 1
+  test-vader.vader
+
+"
+" Execute and Asserts
+"
+Execute(assert tests):
+  Assert 1 == 1
+  AssertEqual 1, 1
+  AssertNotEqual 2, 1
