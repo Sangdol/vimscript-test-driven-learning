@@ -1,0 +1,37 @@
+#
+# Sources
+# https://learnxinyminutes.com/docs/vimscript/
+#
+
+Execute (implicit type conversion):
+  AssertEqual "1" + 1, 2
+  AssertEqual "1" .. 1, '11'
+
+
+  " These strings are parsed to 0 which is false.
+  AssertEqual "true" ? 1 : 0, 0
+  AssertEqual "false" ? 1 : 0, 0
+  AssertEqual "a1" ? 1 : 0, 0
+  Assert "a1" != 1
+
+  " These string are parsed to non 0 which is true.
+  AssertEqual "1" ? 1 : 0, 1
+  AssertEqual "11" ? 1 : 0, 1
+
+  AssertEqual "1a" ? 1 : 0, 1
+  Assert "1a" == 1
+
+
+" :h type
+Execute (type func):
+  AssertEqual type(100), 0
+  AssertEqual type('a'), 1
+  AssertEqual type(function('type')), 2
+  AssertEqual type([]), 3
+  AssertEqual type({}), 4
+  AssertEqual type(1.1), 5
+  AssertEqual type(v:true), 6
+  AssertEqual type(v:null), 7
+
+  " can be used as a method
+  AssertEqual []->type(), 3
