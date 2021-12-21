@@ -34,6 +34,9 @@ Execute (call and execute):
   let weirdThree = execute('call EchoThree()')
 
   " weirdThree becomes something like '^@3'. why?
+  " ^@ is a null character that can be added
+  " when there's a newline character.
+  " Somehow `execute` adds it.
   AssertNotEqual weirdThree, '3'
 
 
