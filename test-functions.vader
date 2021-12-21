@@ -68,3 +68,23 @@ Execute (dictionary functions 2):
   endfunction
 
   AssertEqual d.len(), 3
+
+
+Execute (a:):
+  function! Args(...)
+    return a:
+  endfunction
+
+  " '0': number of arguments
+  " '000': arguments
+  AssertEqual Args(), {'0': 0, '000': [], 'firstline': 1, 'lastline': 1}
+  AssertEqual Args('a'), {'0': 1, '000': ['a'], '1': 'a', 'firstline': 1, 'lastline': 1}
+
+
+Execute (default arguments):
+  function! Args(...)
+    return get(a:, 1, 100)
+  endfunction
+
+  AssertEqual Args(), 100
+  AssertEqual Args(10), 10
