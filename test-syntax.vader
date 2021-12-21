@@ -5,6 +5,14 @@
 
 " TODO - multiline ( \...)
 
+Execute (multiline):
+  AssertEqual 'a b', 'a
+    \ b'
+
+  AssertEqual [1, 2], [1,
+    \ 2]
+
+
 Execute (arithmetic operations):
   AssertEqual 1 / 2, 0
   AssertEqual 1 / 2.0, 0.5
