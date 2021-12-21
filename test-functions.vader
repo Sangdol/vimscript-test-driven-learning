@@ -1,0 +1,70 @@
+#
+# Functions
+#
+
+Execute (funcref):
+  AssertEqual function('type')(100), 0
+
+  " lambda
+  AssertEqual {x -> x * x}(4), 16
+
+  " partial function
+  AssertEqual function('substitute', ['hello'])('e', 'a', ''), 'hallo'
+
+  function! Square(n)
+    return a:n * a:n
+  endfunction
+
+  AssertEqual funcref('Square')(2), 4
+
+
+Execute (call and execute):
+  function! ReturnThree()
+    return 3
+  endfunction
+
+  let three = call(funcref('ReturnThree'), [])
+
+  AssertEqual three, 3
+
+  function! EchoThree()
+    echo 3
+  endfunction
+
+  let weirdThree = execute('call EchoThree()')
+
+  " weirdThree becomes something like '^@3'. why?
+  AssertNotEqual weirdThree, '3'
+
+
+Execute (closure):
+  function! MakeAdder(x)
+    function! Adder(n) closure
+      return a:x + a:n
+    endfunction
+    return funcref('Adder')
+  endfunction
+
+  let AddFive = MakeAdder(5)
+  AssertEqual AddFive(3), 8
+
+
+Execute (dictionary functions 1):
+  function! Mylen() dict
+    return len(self.data)
+  endfunction
+
+  let d = {'data': [1, 2, 3], 'len': funcref('Mylen')}
+
+  AssertEqual d.len(), 3
+
+
+Execute (dictionary functions 2):
+  let d = {'data': [1, 2, 3]}
+
+  " The `dict` keyword is not necessary.
+  function d.len()
+    return len(self.data)
+  endfunction
+
+  AssertEqual d.len(), 3
