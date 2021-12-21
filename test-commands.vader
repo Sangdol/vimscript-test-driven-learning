@@ -1,0 +1,18 @@
+#
+# Commands
+#
+
+" normal! {{{1
+"
+Given (texts):
+  abc
+
+" ! to ignore user mappings
+Execute (normal!):
+  normal! yyp
+
+Expect (two lines):
+  abc
+  abc
+
+"}}}

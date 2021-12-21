@@ -88,3 +88,4 @@ Execute (default arguments):
 
   AssertEqual Args(), 100
   AssertEqual Args(10), 10
+
