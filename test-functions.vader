@@ -2,6 +2,18 @@
 # Functions
 #
 
+Execute (script local function):
+  function! s:identity(n)
+    return a:n
+  endfunction
+
+  " Need to do `call s:identity()` when calling it without assigning
+  " since vim regards `s:identity()` as a substitute and
+  " throws 'pattern not found' exception.
+  let res = s:identity('ls)
+  AssertEqual res, 1
+
+
 Execute (funcref):
   AssertEqual function('type')(100), 0
 
