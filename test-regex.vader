@@ -1,0 +1,32 @@
+#
+# Regex
+#
+
+# * (0 or more) greedy matching
+# \+ (1 or more) greedy matching
+# \{-} (0 or more) non-greedy matching
+# \{-n,} (at least n) non-greedy matching
+
+"
+" Greedy
+"
+Given (text):
+  "name": "sang"
+
+Execute (greedy):
+  s/\v(".+").*/\1/
+
+Expect (both):
+  "name": "sang"
+
+"
+" Non-greedy
+"
+Given (text):
+  "name": "sang"
+
+Execute (greedy):
+  s/\v(".{-}").*/\1/
+
+Expect (only first):
+  "name"
