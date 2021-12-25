@@ -1,0 +1,51 @@
+#
+# String
+# |string-functions|
+#
+
+Execute (quotes):
+  AssertEqual "\\s", '\s'
+
+
+Execute (strlen):
+  AssertEqual strlen('len'), 3
+  AssertEqual strlen('len'), len('len')
+
+
+Execute (stridx):
+  AssertEqual stridx('Hallo', 'a'), 1
+  AssertEqual stridx('Hallo', 'z'), -1
+
+
+Execute (matchstr):
+  let line = '  https://hallo.com  '
+  let url = matchstr(line, 'http[^ ]*')
+
+  AssertEqual url, 'https://hallo.com'
+
+
+Execute (substitute):
+  AssertEqual substitute("abc", "a", 'b', ''), 'bbc'
+
+  " magic by default => need to escape +
+  " need to use single quotes to put only one \
+  AssertEqual substitute("abc", '.\+\(b\).\+', '\1', ''), 'b'
+
+  " verymagic!
+  AssertEqual substitute("abc", '\v.+(b).+', '\1', ''), 'b'
+
+  let plug = "Plug 'junegunn/vim-slash'"
+  let path = substitute(plug, '\vPlug [''"](.+)[''"]', '\1', '')
+
+  AssertEqual path, 'junegunn/vim-slash'
+
+
+Execute (split):
+  AssertEqual split('a b c'), ['a', 'b', 'c']
+  AssertEqual split('a,b,c', ','), ['a', 'b', 'c']
+
+
+Execute (join):
+  AssertEqual join(['a', 'b'], ';'), 'a;b'
+
+
