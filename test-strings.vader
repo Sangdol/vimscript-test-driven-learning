@@ -49,3 +49,19 @@ Execute (join):
   AssertEqual join(['a', 'b'], ';'), 'a;b'
 
 
+Execute (ignorecase):
+  let hallo = 'Hallo'
+
+  set ignorecase
+  Assert hallo == toupper(hallo)
+
+  set noignorecase
+  Assert hallo != toupper(hallo)
+
+
+Execute (ignorecase 2):
+  let hallo = 'Hallo'
+  " always case sensitive
+  Assert hallo !=# toupper(hallo)
+  " always case insensitive
+  Assert hallo ==? toupper(hallo)
