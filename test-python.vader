@@ -1,0 +1,50 @@
+#
+# Python3
+# :h if_pyth
+#
+
+"
+" py3 vim.command
+"
+Given (hallo):
+  hallo
+  hello
+
+Execute (py3):
+  py3 vim.command('normal! dd')
+
+Expect (hello):
+  hello
+
+"
+" py3do
+"
+Given (hallo):
+  hallo
+  hello
+
+Execute (py3do):
+  1,2 py3do return line[::-1]
+
+Expect (reversed):
+  ollah
+  olleh
+
+"
+" py3 + py3do
+" Caveat: Use py3do. pydo and py3 don't share scopes.
+"
+Given (hallo):
+  hallo
+  hello
+
+Execute (pydo):
+  py3 << EOF
+  def rev(line):
+    return line[::-1]
+  EOF
+  1,2 py3do return rev(line)
+
+Expect (reversed):
+  ollah
+  olleh
