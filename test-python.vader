@@ -4,7 +4,7 @@
 #
 
 "
-" py3 vim.command
+" vim.command
 "
 Given (hallo):
   hallo
@@ -15,6 +15,27 @@ Execute (py3):
 
 Expect (hello):
   hello
+
+"
+" vim.eval
+"
+Given (hallo):
+  hallo
+
+Do (yank to a):
+  "aye
+
+Execute (py3):
+  py3 assert vim.eval('@a') == 'hallo'
+  py3 assert vim.eval('1 + 2') == '3'
+  py3 assert vim.eval('[1, 2]') == ['1', '2']
+  py3 assert vim.eval('{"a": 2}') == {'a': '2'}
+
+"
+" py3eval
+"
+Execute (py3eval):
+  AssertEqual py3eval('1 + 2'), 3
 
 "
 " py3do
