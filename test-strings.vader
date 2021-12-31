@@ -44,6 +44,11 @@ Execute (substitute):
 
   AssertEqual path, 'junegunn/vim-slash'
 
+  let plug = "  Plug 'junegunn/vim-slash' {'on': 'hallo'}"
+  let path = substitute(plug, '\v\s*Plug [''"](.{-})[''"].*', '\1', '')
+
+  AssertEqual path, 'junegunn/vim-slash'
+
 
 Execute (split):
   AssertEqual split('a b c'), ['a', 'b', 'c']
