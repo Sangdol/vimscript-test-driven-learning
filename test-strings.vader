@@ -12,7 +12,8 @@ Execute (strlen):
   AssertEqual strlen('len'), len('len')
 
 
-Execute (stridx):
+Execute (stridx / startswith):
+  AssertEqual stridx('Hallo', 'H'), 0
   AssertEqual stridx('Hallo', 'a'), 1
   AssertEqual stridx('Hallo', 'z'), -1
 
@@ -75,3 +76,4 @@ Execute (ignorecase 2):
   Assert hallo !=# toupper(hallo)
   " always case insensitive
   Assert hallo ==? toupper(hallo)
+
