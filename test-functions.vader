@@ -10,7 +10,7 @@ Execute (script local function):
   " Need to do `call s:identity()` when calling it without assigning
   " since vim regards `s:identity()` as a substitute and
   " throws 'pattern not found' exception.
-  let res = s:identity('ls)
+  let res = s:identity(1)
   AssertEqual res, 1
 
 
@@ -50,6 +50,7 @@ Execute (call and execute):
   " when there's a newline character.
   " Somehow `execute` adds it.
   AssertNotEqual weirdThree, '3'
+  AssertEqual substitute(weirdThree, '\n', '', ''), '3'
 
 
 Execute (closure):
