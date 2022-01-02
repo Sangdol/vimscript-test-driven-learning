@@ -55,6 +55,9 @@ Execute (split):
   AssertEqual split('a b c'), ['a', 'b', 'c']
   AssertEqual split('a,b,c', ','), ['a', 'b', 'c']
 
+  " . has to be escaped
+  AssertEqual split('a.b', '\.'), ['a', 'b']
+
 
 Execute (join):
   AssertEqual join(['a', 'b'], ';'), 'a;b'
