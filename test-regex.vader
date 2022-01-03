@@ -1,6 +1,8 @@
 #
 # Regex
 #
+# |pattern|
+#
 
 # * (0 or more) greedy matching
 # \+ (1 or more) greedy matching
@@ -30,3 +32,24 @@ Execute (greedy):
 
 Expect (only first):
   "name"
+
+"
+" Lookahead
+"
+Execute (lookahead):
+  " :h @=
+  " only matches 'foo' in 'foobar'
+  AssertEqual substitute('foobar', '\vfoo(bar)@=', 'bar', ''), 'barbar'
+
+  " matches nothing since @= is a zero-width expression
+  AssertEqual substitute('foobarfoo', '\vfoo(bar)@=foo', 'bar', ''), 'foobarfoo'
+
+Execute (lookahead: negative):
+  AssertEqual substitute('foobar', '\vfoo(bar)@!', 'bar', ''), 'foobar'
+  AssertEqual substitute('foofoo', '\vfoo(bar)@!', 'bar', ''), 'barfoo'
+
+Execute (lookahead: \ze - \z + end):
+  AssertEqual substitute('foobar', '\vfoo\zebar', 'bar', ''), 'barbar'
+  " This behavior is different from @=
+  AssertEqual substitute('foobarfoo', '\vfoo\ze(bar)foo', 'bar', ''), 'barbarfoo'
+
