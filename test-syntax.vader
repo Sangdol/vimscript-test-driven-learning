@@ -157,3 +157,13 @@ Execute (exception handling):
   finnaly
     Assert 1
   endtry
+
+
+Execute (let-unpack / destructuring):
+  let [start, end] = split('1,2', ',')
+
+  Assert start == 1
+  Assert end == 2
+
+  " This doesn't work - E688: More targets than List items
+  "let [start, end] = split('1', ',')
