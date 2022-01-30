@@ -84,3 +84,6 @@ Execute (ignorecase 2):
   Assert hallo ==? toupper(hallo)
 
 
+Execute (string to char list):
+  Assert split('abc', '\zs') == ['a', 'b', 'c']
+
