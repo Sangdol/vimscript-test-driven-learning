@@ -27,6 +27,9 @@ Execute (funcref):
     return a:n * a:n
   endfunction
 
+  " funcref (vs. function)
+  "  - look up by refererence
+  "  - only for user defined function
   AssertEqual funcref('Square')(2), 4
 
 
