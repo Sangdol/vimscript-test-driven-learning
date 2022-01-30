@@ -18,7 +18,9 @@ Execute (funcref):
   AssertEqual function('type')(100), 0
 
   " lambda
+  " The body cannot be a sequence of Ex commands.
   AssertEqual {x -> x * x}(4), 16
+  AssertEqual {-> 1}(), 1
 
   " partial function
   AssertEqual function('substitute', ['hello'])('e', 'a', ''), 'hallo'
