@@ -20,7 +20,8 @@ Execute (arithmetic operations):
   AssertEqual 1 % 2, 1
 
 
-Execute (boolean):
+" :h =~
+Execute (boolean / equality / comparison):
   Assert 1 == 1
   Assert 1 != 2
   Assert 2 > 1
@@ -30,6 +31,14 @@ Execute (boolean):
   " Identity
   Assert 1 is 1
   Assert 1 isnot 2
+
+  " Regex
+  Assert "123" =~ "1"
+  Assert "123" =~ '\d'
+  Assert "123" =~ "\\d"
+  Assert "abc" !~ "\\d"
+  Assert "1bc" =~ "\\d"
+  Assert "ab1" =~ "\\d"
 
 
 " v: - global, predefined by vim
@@ -75,10 +84,6 @@ Execute (dictionary):
 
 
 Execute (variables):
-  const X = 1
-  AssertEqual X, 1
-  unlet g:X
-
   " Global has to start with a capital letter
   let IsString = {x -> type(x) == type('')}
   Assert IsString('a')
