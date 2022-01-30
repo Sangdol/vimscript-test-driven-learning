@@ -75,8 +75,12 @@ Execute (ignorecase):
 
 Execute (ignorecase 2):
   let hallo = 'Hallo'
+
   " always case sensitive
+  Assert hallo ==# 'Hallo'
   Assert hallo !=# toupper(hallo)
+
   " always case insensitive
   Assert hallo ==? toupper(hallo)
+
 
