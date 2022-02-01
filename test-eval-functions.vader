@@ -3,6 +3,10 @@
 #
 
 Execute (map):
-  Assert map([1, 2, 3], {idx, val -> val + 1}) == [2, 3, 4]
-  Assert map([97, 98, 99], {idx, val -> nr2char(val)}) == ['a', 'b', 'c']
+  AssertEqual map([1, 2, 3], {idx, val -> val + 1}), [2, 3, 4]
+  AssertEqual map([97, 98, 99], {idx, val -> nr2char(val)}), ['a', 'b', 'c']
 
+
+Execute (to string):
+  AssertEqual string([]), '[]'
+  AssertEqual string(1), '1'
