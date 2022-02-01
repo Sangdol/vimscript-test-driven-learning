@@ -58,3 +58,27 @@ Execute (assert tests):
   AssertEqual 1, 1
   AssertNotEqual 2, 1
   AssertThrows 1/0
+
+
+"
+" Function call
+"
+Execute (function call):
+  function! s:identity(a)
+    return a:a
+  endfunction
+
+  let res = s:identity(1)
+
+  AssertEqual res, 1
+
+  " Calling local function inside an AssertEqual statement doesn't work:
+  "   Vim(call):E117: Unknown function: s:identity
+  "AssertEqual s:identity(1), 1
+
+  function! Hi()
+    return 'hi'
+  endfunction
+
+  " This works since Hi is a global function.
+  AssertEqual Hi(), 'hi'
