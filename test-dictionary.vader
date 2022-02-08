@@ -1,0 +1,26 @@
+#
+# Dictinoary
+#
+
+Execute (access / get):
+  AssertEqual {'a': 1, 'b': 2}['a'], 1
+  AssertEqual {'a': 1, 'b': 2}.a, 1
+  AssertThrows {'a': 1, 'b': 2}.c, 1
+
+  AssertEqual get({'a': 1, 'b': 2}, 'a', 3), 1
+  AssertEqual get({'a': 1, 'b': 2}, 'c', 100), 100
+
+
+# :h E715
+Execute (other functions):
+  Assert has_key({'a': 1}, 'a')
+  Assert empty({})
+  AssertEqual max({'a': 1, 'b': 100}), 100
+  AssertEqual min({'a': 1, 'b': 100}), 1
+
+  " count of value
+  AssertEqual count({'xx': 'x', 'x': 100}, 'x'), 1
+  AssertEqual count({'xx': 1, 'x': 100}, 'x'), 0
+  AssertEqual count({'xx': 1, 'xxx': 'x'}, 'x'), 1
+  AssertEqual count({'xx': 1, 'xxx': 1}, 1), 2
+

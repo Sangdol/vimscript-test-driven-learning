@@ -74,15 +74,6 @@ Execute (list):
   AssertEqual [1, 2, 3][-2:], [2, 3]
 
 
-Execute (dictionary):
-  AssertEqual {'a': 1, 'b': 2}['a'], 1
-  AssertEqual {'a': 1, 'b': 2}.a, 1
-  AssertThrows {'a': 1, 'b': 2}.c, 1
-
-  AssertEqual get({'a': 1, 'b': 2}, 'a', 3), 1
-  AssertEqual get({'a': 1, 'b': 2}, 'c', 100), 100
-
-
 Execute (variables):
   " Global has to start with a capital letter
   let IsString = {x -> type(x) == type('')}
@@ -166,4 +157,4 @@ Execute (let-unpack / destructuring):
   Assert end == 2
 
   " This doesn't work - E688: More targets than List items
-  "let [start, end] = split('1', ',')
+    "let [start, end] = split('1', ',')
