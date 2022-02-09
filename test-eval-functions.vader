@@ -10,3 +10,7 @@ Execute (map):
 Execute (to string):
   AssertEqual string([]), '[]'
   AssertEqual string(1), '1'
+
+
+Execute (bash / shell script with system):
+  AssertEqual trim(system('echo hi')), 'hi'
