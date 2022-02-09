@@ -12,6 +12,7 @@ Execute (access / get):
 
 
 # :h E715
+# :h dict-functions
 Execute (other functions):
   Assert has_key({'a': 1}, 'a')
   Assert empty({})
@@ -24,3 +25,13 @@ Execute (other functions):
   AssertEqual count({'xx': 1, 'xxx': 'x'}, 'x'), 1
   AssertEqual count({'xx': 1, 'xxx': 1}, 1), 2
 
+
+# https://learnvimscriptthehardway.stevelosh.com/chapters/37.html
+Execute (deleting key):
+  let d = {'a': 1, 'b': 2}
+
+  let one = remove(d, 'a')
+  AssertEqual one, 1
+
+  unlet d.b
+  AssertEqual d, {}
