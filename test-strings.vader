@@ -3,8 +3,11 @@
 # |string-functions|
 #
 
+# https://learnvimscriptthehardway.stevelosh.com/chapters/26.html
 Execute (quotes):
+  " '': literal-string
   AssertEqual "\\s", '\s'
+  AssertEqual "\"", '"'
 
 
 Execute (strlen):
