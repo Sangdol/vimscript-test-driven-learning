@@ -1,0 +1,8 @@
+#
+# Lua
+#
+
+Execute (luaeval):
+  AssertEqual luaeval('1 + 1'), 2
+  AssertEqual luaeval('"a" .. "b"'), "ab"
+
