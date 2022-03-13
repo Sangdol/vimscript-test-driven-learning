@@ -6,7 +6,19 @@ Execute (luaeval):
   AssertEqual luaeval('1 + 1'), 2
   AssertEqual luaeval('"a" .. "b"'), "ab"
 
+
 Execute (luaeval with arguments):
   AssertEqual luaeval('_A', 'abc'), 'abc'
   AssertEqual luaeval('_A[1] + _A[2]', [1, 2]), 3
 
+
+Execute (lua global variables):
+  lua << EOF
+  global_a = 1
+  EOF
+
+  lua << EOF
+  global_a = global_a + 1
+  EOF
+
+  AssertEqual luaeval('global_a'), 2
