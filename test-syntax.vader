@@ -3,8 +3,6 @@
 # https://learnxinyminutes.com/docs/vimscript/
 #
 
-" TODO - multiline ( \...)
-
 Execute (multiline):
   AssertEqual 'a b', 'a
     \ b'
@@ -90,7 +88,8 @@ Execute (variables):
   AssertEqual c, [3, 4, 5]
 
 
-Execute (flow control):
+" Truthy and falsey values: https://vi.stackexchange.com/questions/36270/what-values-are-truthy-and-falsey
+Execute (if statement):
   if v:true
     Assert 1
   elseif v:false
