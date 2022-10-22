@@ -87,6 +87,24 @@ Execute (ignorecase 2):
   Assert hallo ==? toupper(hallo)
 
 
+Execute (regex matches / contains):
+  ":h =~
+  let hallo = 'Hallo'
+
+  set ignorecase
+  Assert hallo =~ 'Ha'
+  Assert hallo =~ 'ha'
+
+  " match case
+  Assert hallo =~# 'Ha'
+  Assert hallo !~# 'ha'
+
+  "" ignore case
+  set noignorecase
+  Assert hallo =~? 'Ha'
+  Assert hallo =~? 'ha'
+
+
 Execute (string to char list):
   Assert split('abc', '\zs') == ['a', 'b', 'c']
 
