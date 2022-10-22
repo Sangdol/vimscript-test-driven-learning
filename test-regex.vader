@@ -27,7 +27,7 @@ Expect (both):
 Given (text):
   "name": "sang"
 
-Execute (greedy):
+Execute (non greedy):
   s/\v(".{-}").*/\1/
 
 Expect (only first):
