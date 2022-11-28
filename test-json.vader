@@ -1,0 +1,13 @@
+#
+# JSON
+#
+
+Execute(json_encode):
+  let d = {'a': 1}
+
+  AssertEqual json_encode(d), '{"a": 1}'
+
+Execute(json_decode):
+  let json = '{"a": 1}'
+
+  AssertEqual json_decode(json), {'a': 1}
