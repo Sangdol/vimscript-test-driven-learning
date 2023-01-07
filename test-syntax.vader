@@ -93,6 +93,7 @@ Execute (truthy falsey):
   " Truthy
   " Non-zero numbers or strings starting with a non-zero number (but '01' is true...)
   AssertEqual 1 ? 'yes' : 'no', 'yes'
+  AssertEqual +1 ? 'yes' : 'no', 'yes'
   AssertEqual '1' ? 'yes' : 'no', 'yes'
   AssertEqual '1a' ? 'yes' : 'no', 'yes'
   AssertEqual '01' ? 'yes' : 'no', 'yes'
