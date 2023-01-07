@@ -91,14 +91,20 @@ Execute (variables):
 " Truthy and falsey values: https://vi.stackexchange.com/questions/36270/what-values-are-truthy-and-falsey
 Execute (truthy falsey):
   " Truthy
+  " Non-zero numbers or strings starting with a non-zero number (but '01' is true...)
   AssertEqual 1 ? 'yes' : 'no', 'yes'
   AssertEqual '1' ? 'yes' : 'no', 'yes'
+  AssertEqual '1a' ? 'yes' : 'no', 'yes'
+  AssertEqual '01' ? 'yes' : 'no', 'yes'
+  AssertEqual '001' ? 'yes' : 'no', 'yes'
 
   " Falsey
   AssertEqual 'a' ? 'yes' : 'no', 'no'
   AssertEqual 'abc' ? 'yes' : 'no', 'no'
   AssertEqual 0 ? 'yes' : 'no', 'no'
   AssertEqual '' ? 'yes' : 'no', 'no'
+  AssertEqual '0' ? 'yes' : 'no', 'no'
+  AssertEqual '+1' ? 'yes' : 'no', 'no'
 
   " Error: E745: Using a List as a Number
   AssertThrows [1] ? 'yes' : 'no', 'yes'
