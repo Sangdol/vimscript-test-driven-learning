@@ -89,6 +89,23 @@ Execute (variables):
 
 
 " Truthy and falsey values: https://vi.stackexchange.com/questions/36270/what-values-are-truthy-and-falsey
+Execute (truthy falsey):
+  " Truthy
+  AssertEqual 1 ? 'yes' : 'no', 'yes'
+  AssertEqual '1' ? 'yes' : 'no', 'yes'
+
+  " Falsey
+  AssertEqual 'a' ? 'yes' : 'no', 'no'
+  AssertEqual 'abc' ? 'yes' : 'no', 'no'
+  AssertEqual 0 ? 'yes' : 'no', 'no'
+  AssertEqual '' ? 'yes' : 'no', 'no'
+
+  " Error: E745: Using a List as a Number
+  AssertThrows [1] ? 'yes' : 'no', 'yes'
+  " Error: E728: Using a Dictionary as a Number
+  AssertThrows {} ? 'yes' : 'no', 'yes'
+
+
 Execute (if statement):
   if v:true
     Assert 1
