@@ -91,7 +91,7 @@ Execute (dictionary functions 2):
   AssertEqual d.len(), 3
 
 
-Execute (a:):
+Execute (Variable arguments):
   function! Args(...)
     return a:
   endfunction
@@ -101,6 +101,15 @@ Execute (a:):
   AssertEqual Args(), {'0': 0, '000': [], 'firstline': 1, 'lastline': 1}
   AssertEqual Args('a'), {'0': 1, '000': ['a'], '1': 'a', 'firstline': 1, 'lastline': 1}
 
+  function! Args2(a, b, ...) abort
+    let c = get(a:, 1, '')
+    let d = get(a:, 2, '')
+    return [a:a, a:b, c, d]
+  endfunction
+
+  AssertEqual Args2('a', 'b'), ['a', 'b', '', '']
+  AssertEqual Args2('a', 'b', 'c'), ['a', 'b', 'c', '']
+  AssertEqual Args2('a', 'b', 'c', 'd'), ['a', 'b', 'c', 'd']
 
 Execute (default arguments):
   function! Args(...)
